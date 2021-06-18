@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A6234082267C2E640093C278 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A6234081267C2E640093C278 /* README.md */; };
+		A6234098267C326A0093C278 /* RickAndMortyApp.gif in Resources */ = {isa = PBXBuildFile; fileRef = A6234097267C326A0093C278 /* RickAndMortyApp.gif */; };
 		A6A97834267BB84000647D14 /* RickAndMortyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A97833267BB84000647D14 /* RickAndMortyApp.swift */; };
 		A6A97836267BB84000647D14 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A97835267BB84000647D14 /* ContentView.swift */; };
 		A6A97838267BB84200647D14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6A97837267BB84200647D14 /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		A6234081267C2E640093C278 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		A6234097267C326A0093C278 /* RickAndMortyApp.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = RickAndMortyApp.gif; sourceTree = "<group>"; };
 		A6A97830267BB84000647D14 /* RickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6A97833267BB84000647D14 /* RickAndMortyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickAndMortyApp.swift; sourceTree = "<group>"; };
 		A6A97835267BB84000647D14 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -100,6 +102,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A6234086267C2FAA0093C278 /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				A6234097267C326A0093C278 /* RickAndMortyApp.gif */,
+			);
+			path = Screenshots;
+			sourceTree = "<group>";
+		};
 		A6A97827267BB84000647D14 = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +140,7 @@
 				A6A97868267BB9F400647D14 /* Model */,
 				A6A97865267BB9C800647D14 /* View */,
 				A6A97867267BB9EC00647D14 /* ViewModel */,
+				A6234086267C2FAA0093C278 /* Screenshots */,
 				A6A97837267BB84200647D14 /* Assets.xcassets */,
 				A6A9783C267BB84200647D14 /* Info.plist */,
 				A6A97839267BB84200647D14 /* Preview Content */,
@@ -323,6 +334,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6234098267C326A0093C278 /* RickAndMortyApp.gif in Resources */,
 				A6234082267C2E640093C278 /* README.md in Resources */,
 				A6A9783B267BB84200647D14 /* Preview Assets.xcassets in Resources */,
 				A6A97838267BB84200647D14 /* Assets.xcassets in Resources */,
