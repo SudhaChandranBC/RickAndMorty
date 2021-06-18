@@ -17,9 +17,8 @@ import Combine
  - **CharacterModel**: CharacterModel struct in CharacterModel.swift.
  */
 class CharacterViewModel: ObservableObject {
-    
-    @Published var characters: [CharacterModel] = []
-    var cancellationToken: AnyCancellable?
+    @Published private(set) var characters: [CharacterModel] = []
+    private var cancellationToken: AnyCancellable?
     
     init() {
         getCharacters()
@@ -34,7 +33,7 @@ extension CharacterViewModel {
      Request all characters.
      - Returns: Array of Character model struct.
      */
-    func getCharacters() {
+    private func getCharacters() {
         cancellationToken = RickMortyAPI().getAllCharacters()
             .mapError({ (error) -> Error in
                 print(error)

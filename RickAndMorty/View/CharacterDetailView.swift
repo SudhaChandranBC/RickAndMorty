@@ -19,9 +19,22 @@ import SwiftUI
  - **episode**: Number of episode information.
  */
 struct CharacterDetailView: View {
-    var character: CharacterModel
+    private(set) var character: CharacterModel
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
+        HStack {
+            Spacer()
+            Button(action: {
+                self.presentationMode.wrappedValue.dismiss()
+            }) {
+                Image(systemName: "xmark.circle.fill")
+                    .font(.largeTitle)
+                    .padding()
+                    .foregroundColor(.gray)
+                    .clipShape(Circle())
+            }
+        }
         Text(character.name)
             .font(.title)
         AsyncImage(url: character.imageURL(),

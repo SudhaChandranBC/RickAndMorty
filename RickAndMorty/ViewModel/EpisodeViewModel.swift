@@ -22,14 +22,22 @@ import SwiftUI
  - **CharacterModel**: CharacterModel struct in CharacterModel.swift.
  */
 class EpisodeViewModel: ObservableObject {
-    @Published var episodes: [EpisodeModel] = []
-    @Published var seasonsArray = [Int]()
-    @ObservedObject var characterModel = CharacterViewModel()
+    @Published private(set) var episodes: [EpisodeModel] = []
+    @Published private(set) var seasonsArray = [Int]()
+    @ObservedObject private(set) var characterModel = CharacterViewModel()
     
-    var cancellationToken: AnyCancellable?
+    private var cancellationToken: AnyCancellable?
     
     init() {
         getEpisodes()
+    }
+    
+    /**
+     Perform filtering the episodes of the selected season from all episodes array.
+     - Returns: Filtered array of episodes for selected season.
+     */
+    func filterEpisodes(forSeason: Int) -> [EpisodeModel]? {
+        return episodes.filter{ $0.episode.hasPrefix(String(format: "S%02d", forSeason)) }
     }
 }
 
@@ -39,7 +47,7 @@ extension EpisodeViewModel {
      Request all episodes.
      - Returns: Array of Episode model struct.
      */
-    func getEpisodes() {
+    private func getEpisodes() {
         cancellationToken = RickMortyAPI().getAllEpisodes()
             .mapError({ (error) -> Error in
                 print(error)
@@ -57,7 +65,7 @@ extension EpisodeViewModel {
      Performs filter and computes the number of seasons and episodes into array.
      - Returns: Array of Episodes and Seasons info.
      */
-    func groupEpisodes() {
+    private func groupEpisodes() {
         var seasons = [String]()
         for item in self.episodes {
             seasons.append(String(item.episode.prefix(3)))

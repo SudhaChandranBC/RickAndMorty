@@ -11,9 +11,9 @@ import SwiftUI
  EpisodeDetailView displays the list of information of Episode.
  */
 struct EpisodeDetailView: View {
-    var episode: EpisodeModel
-    var chars: [CharacterModel]
     @State private var selectedCharacter: CharacterModel? = nil
+    private(set) var episode: EpisodeModel
+    private(set) var chars: [CharacterModel]
     
     var body: some View {
         EpisodeHeader(episode: episode)
