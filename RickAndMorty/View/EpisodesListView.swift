@@ -16,22 +16,25 @@ struct EpisodesListView: View {
     var seasonSelected: Int
     
     var body: some View {
-        let episodes = filterEpisodesForSeason()
-        List(episodes) { episode in
-            NavigationLink(destination: EpisodeDetailView(episode: episode, chars: episodeModel.characterModel.characters)) {
-                VStack(alignment: .leading) {
-                    EpisodesRow(episode: episode)
+        if let episodes = filterEpisodesForSeason() {
+            List(episodes) { episode in
+                NavigationLink(destination: EpisodeDetailView(episode: episode, chars: episodeModel.characterModel.characters)) {
+                    VStack(alignment: .leading) {
+                        EpisodesRow(episode: episode)
+                    }
                 }
             }
+            .navigationTitle("Season \(seasonSelected)")
+        } else {
+            Text("Error loading Episodes..!").font(.largeTitle)
         }
-        .navigationTitle("Season \(seasonSelected)")
     }
     
     /**
      Perform filtering the episodes of the selected season from all episodes array.
      - Returns: Filtered array of episodes for selected season.
      */
-    func filterEpisodesForSeason() -> [EpisodeModel] {
+    func filterEpisodesForSeason() -> [EpisodeModel]? {
         let seasonPrefix = String(format: "S%02d", seasonSelected)
         let array = episodeModel.episodes.filter{ $0.episode.hasPrefix(seasonPrefix) }
         return array

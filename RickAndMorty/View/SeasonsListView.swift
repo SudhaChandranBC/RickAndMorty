@@ -16,16 +16,20 @@ struct SeasonsListView: View {
     
     var body: some View {
         NavigationView {
-            List(episodeModel.seasonsArray.indices, id: \.self) { index in
-                NavigationLink(destination: EpisodesListView(seasonSelected: index+1)) {
-                    HStack {
-                        Text("Season \(index+1)").font(.headline)
-                        Spacer()
-                        Text("\(episodeModel.seasonsArray[index]) Episodes") .font(.subheadline)
+            if (episodeModel.seasonsArray.count > 0) {
+                List(episodeModel.seasonsArray.indices, id: \.self) { index in
+                    NavigationLink(destination: EpisodesListView(seasonSelected: index+1)) {
+                        HStack {
+                            Text("Season \(index+1)").font(.headline)
+                            Spacer()
+                            Text("\(episodeModel.seasonsArray[index]) Episodes") .font(.subheadline)
+                        }
                     }
-                }
+                } .navigationTitle("Rick And Morty")
+            } else {
+                Text("Error loading Seasons..!").font(.title)
+                    .navigationTitle("Rick And Morty")
             }
-            .navigationTitle("Rick And Morty")
         }
     }
 }

@@ -18,21 +18,25 @@ struct EpisodeDetailView: View {
     var body: some View {
         EpisodeHeader(episode: episode)
         
-        List {
-            ForEach(episode.characters, id: \.self) { characterURL in
-                let fileArray = characterURL.components(separatedBy: "/")
-                let charId = Int(fileArray.last!)!
-                if let char = chars.first(where: {$0.id == charId}) {
-                    CharacterRow(character: char) .onTapGesture {
-                        self.selectedCharacter = char
+        if episode.characters.count > 0 {
+            List {
+                ForEach(episode.characters, id: \.self) { characterURL in
+                    let charId = Int(characterURL.components(separatedBy: "/").last!)
+                    if let char = chars.first(where: {$0.id == charId}) {
+                        CharacterRow(character: char) .onTapGesture {
+                            self.selectedCharacter = char
+                        }
                     }
                 }
+            } .sheet(item: self.$selectedCharacter) { car in
+                CharacterDetailView(character: car)
             }
-        } .sheet(item: self.$selectedCharacter) { car in
-            CharacterDetailView(character: car)
+            .navigationTitle(episode.episodeNumber())
+            .navigationBarTitleDisplayMode(.inline)
+        } else {
+            Text("Error loading Characters..!").font(.largeTitle)
         }
-        .navigationTitle(episode.episodeNumber())
-        .navigationBarTitleDisplayMode(.inline)
+        
     }
 }
 

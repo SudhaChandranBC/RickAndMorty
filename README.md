@@ -13,6 +13,7 @@ A Simple SwiftUI App which displays episodes, characters and locations from Rick
 - **Frameworks**: :           SwiftUI, Combine
 - **Architechture**: :         MVVM
 - **Modules**: :                 Networking, AsyncImage, Seasons, Episodes, Character and details modules.
+- **Caching**: :                  NSCache, URLCache
 - **API**: :                          https://rickandmortyapi.com/
 
 ## Here's the glimpse of how app works.

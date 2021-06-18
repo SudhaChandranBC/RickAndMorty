@@ -50,13 +50,16 @@ class ImageLoader: ObservableObject {
     func load() {
         guard !isLoading else { return }
         
-        if let image = cache?[url] {
-            self.image = image
+        let defaulImage = UIImage(named: "default")
+        let cachedImage = cache?[url]
+        
+        if (cachedImage != nil) && cachedImage != defaulImage  {
+            self.image = cachedImage
             return
         }
         cancellable = URLSession.shared.dataTaskPublisher(for: url)
             .map { UIImage(data: $0.data) }
-            .replaceError(with: nil)
+            .replaceError(with: defaulImage)
             .handleEvents(receiveSubscription: { [weak self] _ in self?.onStart() },
                           receiveOutput: { [weak self] in self?.cache($0) },
                           receiveCompletion: { [weak self] _ in self?.onFinish() },
