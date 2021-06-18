@@ -103,7 +103,6 @@ public struct NetworkHandler {
             let decodedData = try decoder.decode(T.self, from: data)
             return decodedData
         } catch {
-            print(error)
             return nil
         }
     }
@@ -120,7 +119,6 @@ public struct NetworkHandler {
             let decodedData = try decoder.decode(ErrorMessage.self, from: data)
             return decodedData
         } catch {
-            print(error)
             return nil
         }
     }

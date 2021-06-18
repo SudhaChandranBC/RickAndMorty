@@ -18,7 +18,7 @@ import Combine
  */
 class CharacterViewModel: ObservableObject {
     @Published private(set) var characters: [CharacterModel] = []
-    private var cancellationToken: AnyCancellable?
+    private(set) var cancellationToken: AnyCancellable?
     
     init() {
         getCharacters()
@@ -36,7 +36,6 @@ extension CharacterViewModel {
     private func getCharacters() {
         cancellationToken = RickMortyAPI().getAllCharacters()
             .mapError({ (error) -> Error in
-                print(error)
                 return error
             })
             .sink(receiveCompletion: { _ in },

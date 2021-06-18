@@ -48,12 +48,10 @@ class ModelTests: XCTestCase {
         XCTAssertNil(response.info.prev)
         XCTAssertTrue((response.results.count != 0))
         
-        let viewModel = CharacterViewModel()
-        viewModel.characters = response.results
+        let characters = response.results
+        let firstCharacter = characters.first!
         
-        let firstCharacter = viewModel.characters.first!
-        
-        XCTAssertEqual(viewModel.characters.count, 20)
+        XCTAssertEqual(characters.count, 20)
         XCTAssertEqual(firstCharacter.name, "Rick Sanchez")
         XCTAssertEqual(firstCharacter.species, "Human")
         XCTAssertEqual(firstCharacter.imageURL(), URL(string: firstCharacter.image))

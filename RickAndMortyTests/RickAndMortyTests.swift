@@ -21,7 +21,7 @@ class RickAndMortyTests: XCTestCase {
         
         cancellable = apiClient.getAllEpisodes()
             .sink(receiveCompletion: { _ in }, receiveValue: { episodes in
-                episodes.forEach() { print ($0.name) }
+                episodes.forEach() { _ in }
                 expectation.fulfill()
             })
         wait(for: [expectation], timeout: 10.0)
@@ -33,7 +33,7 @@ class RickAndMortyTests: XCTestCase {
         
         cancellable = apiClient.getAllCharacters()
             .sink(receiveCompletion: { _ in }, receiveValue: { characters in
-                characters.forEach() { print ($0.name) }
+                characters.forEach() { _ in }
                 expectation.fulfill()
             })
         
@@ -48,8 +48,7 @@ class RickAndMortyTests: XCTestCase {
             switch $0 {
             case .success( _):
                 break
-            case.failure(let error):
-                print(error)
+            case.failure( _):
                 expectation.fulfill()
             }
         }
@@ -62,15 +61,13 @@ class RickAndMortyTests: XCTestCase {
         networkHandler.performAPIRequestByMethod(method: "character/1") {
             switch $0 {
             case .success(let data):
-                if let decodedData: CharacterModel = self.networkHandler.decodeJSONData(data: data) {
-                    print(decodedData.name)
+                if let _: CharacterModel = self.networkHandler.decodeJSONData(data: data) {
                     expectation.fulfill()
                 }
             case.failure( _):
                 break
             }
         }
-        wait(for: [expectation], timeout: 10.0)
     }
     
     func testJSONResponseDataParsingError() {
@@ -82,13 +79,11 @@ class RickAndMortyTests: XCTestCase {
             case .success(let data):
                 if let _: CharacterInfoModel = self.networkHandler.decodeJSONData(data: data) {
                 } else {
-                    print("decoding failed")
                     expectation.fulfill()
                 }
             case.failure( _):
                 break
             }
         }
-        wait(for: [expectation], timeout: 10.0)
     }
 }

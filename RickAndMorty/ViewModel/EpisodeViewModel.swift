@@ -50,7 +50,6 @@ extension EpisodeViewModel {
     private func getEpisodes() {
         cancellationToken = RickMortyAPI().getAllEpisodes()
             .mapError({ (error) -> Error in
-                print(error)
                 return error
             })
             .sink(receiveCompletion: { _ in },
